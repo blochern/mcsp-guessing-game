@@ -1,32 +1,22 @@
-// create a random number
-const solution = parseInt(Math.random() * 50);
-
-// prompt the user for a guess
-let guess = prompt("Guess a number between 1 and 50!");
-
-// parse the response into a number
-guess = parseInt(guess);
-
-// are they equal?
-if (guess === solution) {
-    // tell the user they did gud
-    alert("Great job, you guessed correctly!");
+function randomNumber(max) {
+    return Math.ceil(Math.random() * max);
 }
 
-// is the guess too low?
-if (guess < solution) {
-    // tell the user to guess higher
-    alert("Your guess is too low, guess higher!");
+let max = randomNumber(50);
+
+let secret = randomNumber(max);
+
+let input;
+
+while (input !== secret) {
+    input = +prompt(`Please enter a number between 1 and ${max}`);
+
+    if (!input || input > max || input < 1) {
+        alert("Invalid guess!"); continue;
+    }
+
+    if (input < secret) { alert("Guess higher!"); }
+    if (input > secret) { alert("Guess lower!"); }
 }
 
-// is the guess too high?
-if (guess > solution) {
-    // tell the user to guess lower
-    alert("Your guess is too high, guess lower!");
-}
-
-// console.log the solution and guess for debugging purposes
-console.log({
-    solution: solution,
-    guess: guess
-});
+alert("Correct!");
